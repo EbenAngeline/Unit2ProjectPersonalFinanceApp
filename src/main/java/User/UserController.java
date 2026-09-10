@@ -6,6 +6,7 @@ package User;
 import Models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody User user) {
+    public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
         userService.createUser(user);
         String message = "User created successfully.";
         return ResponseEntity.status(HttpStatus.CREATED).body(message);
@@ -43,7 +44,7 @@ public class UserController {
     @PatchMapping("/{id}")
     public ResponseEntity<String> updateUser(
             @PathVariable Integer id,
-            @RequestBody User userDetails) {
+            @Valid @RequestBody User userDetails) {
         boolean updated = userService.updateUser(id, userDetails).isPresent();
 
         if (!updated) {
