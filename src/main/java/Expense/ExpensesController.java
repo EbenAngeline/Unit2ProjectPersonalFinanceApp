@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +37,7 @@ public class ExpensesController {
         return ResponseEntity.ok(expenses);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<String> updateExpense(
             @PathVariable Integer id,
             @RequestBody Expense expenseDetails) {
@@ -47,7 +47,7 @@ public class ExpensesController {
             return ResponseEntity.notFound().build();
         }
 
-        String message = "Budget updated successfully.";
+        String message = "Expense updated successfully.";
         return ResponseEntity.ok(message);
     }
 
@@ -59,7 +59,7 @@ public class ExpensesController {
             return ResponseEntity.notFound().build();
         }
 
-        String message = "Budget deleted successfully.";
+        String message = "Expense deleted successfully.";
         return ResponseEntity.ok(message);
     }
 }
