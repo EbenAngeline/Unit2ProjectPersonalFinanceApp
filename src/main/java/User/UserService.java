@@ -1,8 +1,6 @@
 
 package User;
 
-
-
 import Models.Expense;
 import Models.User;
 import org.springframework.stereotype.Service;
@@ -35,5 +33,3 @@ public class UserService {
         return userRepository.deleteUser(id);
     }
 }
-
-

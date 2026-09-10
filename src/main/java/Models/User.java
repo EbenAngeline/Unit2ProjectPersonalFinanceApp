@@ -1,74 +1,53 @@
 
 package Models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "userId", nullable = false)
-    private Integer userId;
-    private String category;
-    private BigDecimal amount;
-    private LocalDateTime date;
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String passwordHash;
 
     protected User() {
     }
 
-    public User(Integer userId, String category, BigDecimal amount, LocalDateTime date) {
-        this.userId = userId;
-        this.category = category;
-        this.amount = amount;
-        this.date = date;
+    public User(String email, String passwordHash) {
+        this.email = email;
+        this.passwordHash = passwordHash;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getCategory() {
-        return category;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 }
 

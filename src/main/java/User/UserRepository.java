@@ -1,5 +1,4 @@
 
-
 package User;
 
 
@@ -29,10 +28,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
         }
 
         User user = existingUser.get();
-        user.setUserId(userDetails.getUserId());
-        user.setCategory(userDetails.getCategory());
-        user.setAmount(userDetails.getAmount());
-        user.setDate(userDetails.getDate());
+        if (userDetails.getEmail() != null) {
+            user.setEmail(userDetails.getEmail());
+        }
+        if (userDetails.getPasswordHash() != null) {
+            user.setPasswordHash(userDetails.getPasswordHash());
+        }
 
         return Optional.of(save(user));
     }
